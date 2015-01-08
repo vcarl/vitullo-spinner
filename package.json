@@ -1,0 +1,26 @@
+{
+  "name": "vitullo-spinner",
+  "version": "0.0.0",
+  "repository": "https://github.com/vcarl/vitullo-spinner",
+  "description": "A simple React.js spinner component + mixin",
+  "author": "Carl Vitullo",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "jquery": "^2.1.1",
+    "react": "^0.12.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^1.8.3",
+    "browserify": "^6.2.0",
+    "gulp": "^3.8.10",
+    "gulp-ext-replace": "^0.1.0",
+    "gulp-react": "^2.0.0",
+    "gulp-uglify": "^1.0.2",
+    "gulp-util": "^3.0.1",
+    "jest-cli": "^0.1.18",
+    "reactify": "^0.15.2",
+    "vinyl-transform": "^1.0.0"
+  }
+}

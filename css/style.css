@@ -1,0 +1,71 @@
+.spinner {
+	display: inline-block;
+	position: absolute;
+	height: 40px;
+	width: 5px;
+	margin-left: -2.5px;
+	margin-top: -20px;
+	left: 50%;
+	top: 50%;
+}
+
+.spinner > div {
+	background: #333;
+	height: 40px;
+	width: 5px;
+	-webkit-animation: spinner 1s cubic-bezier(.5,0,.5,1);
+	-moz-animation: spinner 1s cubic-bezier(.5,0,.5,1);
+	-o-animation: spinner 1s cubic-bezier(.5,0,.5,1);
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: infinite;
+	-o-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-moz-animation-direction: alternate;
+	-o-animation-direction: alternate;
+}
+@-webkit-keyframes spinner {
+	from {
+		-webkit-transform: translate(-25px) rotate(0deg);
+	}
+	to {
+		-webkit-transform: translate(25px) rotate(180deg);
+	}
+}
+@-moz-keyframes spinner {
+	from {
+		-moz-transform: translate(-25px) rotate(0deg);
+	}
+	to {
+		-moz-transform: translate(25px) rotate(180deg);
+	}
+}
+@-o-keyframes spinner {
+	from {
+		-o-transform: translate(-25px) rotate(0deg);
+	}
+	to {
+		-o-transform: translate(25px) rotate(180deg);
+	}
+}
+
+@keyframes spinner {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
+.scrim {
+	position: relative;
+	width: 100%;
+	min-height: 150px;
+	height: 100%;
+	z-index: 100;
+}
+
+.spinner-parent {
+	position: relative;
+}
