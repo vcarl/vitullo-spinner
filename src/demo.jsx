@@ -22,11 +22,16 @@
 		},
 		componentWillMount: function() {
 			// Add two spinners, 
-			this.addSpinners(['toggle', 'timed', 'configurable', 'multiple'])
+			this.addSpinners(['toggle', 'timed', 'configurable'])
 		},
+		// 
+		// The next functions are for individual control of the spinners created.
+		// 
 		toggle: function() {
+			// If the spinner is true (loaded, not spinning), start spinning.
 			if (this.getSpinner('toggle')) {
 				this.startSpinner('toggle');
+			// If it's false (not loaded, spinning), stop spinning.
 			} else {
 				this.stopSpinner('toggle');
 			}
@@ -55,38 +60,49 @@
 		},
 		render: function() {
 			return (
-				<div className="container">
+				<div className="container" style={{"margin-top": "150px"}}>
+
+					{/* 
+					 * 
+					 * Spinner rendering
+					 * 
+					 */}
+
 					<div className="row" style={{"min-height": "150px"}}>
 						<div className="col-md-4">
-							<div className="spinner-wrap">
-								<Spinner loaded={this.getSpinner('toggle')}>
-									<div className="spinner-child">
-										<h1>Toggle Spinner</h1>
-									</div>
-								</Spinner>
-							</div>
+							<Spinner loaded={this.getSpinner('toggle')}>
+								<div className="spinner-child">
+									<h1>Toggle Spinner</h1>
+								</div>
+							</Spinner>
 						</div>
 						<div className="col-md-4">
-							<div className="spinner-wrap">
-								<Spinner loaded={this.getSpinner('timed')}>
-									<div className="spinner-child">
-										<h1>setTimeout spinner</h1>
-									</div>
-								</Spinner>
-							</div>
+							<Spinner loaded={this.getSpinner('timed')}>
+								<div className="spinner-child">
+									<h1>setTimeout spinner</h1>
+								</div>
+							</Spinner>
 						</div>
 						<div className="col-md-4">
 							<Spinner 
 								spinnerTimeout={this.state.confTimeout} 
 								messageTimeout={this.state.confMsgTimeout}
 								message={this.state.confMessage}
-								loaded={this.getSpinner('configurable')}>
+								loaded={this.getSpinner('configurable')}
+							>
 								<div className="spinner-child">
 									<h1>Configure spinner</h1>
 								</div>
 							</Spinner>
 						</div>
 					</div>
+
+					{/* 
+					 * 
+					 * Controls code, not interesting 
+					 * 
+					 */}
+
 					<div className="row">
 						<div className="col-md-4">
 							<button className="btn btn-block btn-primary" onClick={this.toggle}>Toggle</button>
