@@ -3,32 +3,75 @@
 
 Require needed code
 ```javascript
-    var Spinner = require('./path/to/vitullo-spinner.jsx');
-    var SpinnerMixin = require('./path/to/spinner-mixin.js');
+var Spinner = require('./path/to/vitullo-spinner.jsx');
+var SpinnerMixin = require('./path/to/spinner-mixin.js');
 ```
 Run setup in React component
 ```javascript
-		componentWillMount: function() {
-			this.addSpinners(['more', 'than', 'one', 'spinner']);
-		}
-		// or
-		componentWillMount: function() {
-			this.addSpinners('spinner');
-		}
+var Spinner = require('./path/to/vitullo-spinner.jsx');
+var SpinnerMixin = require('./path/to/spinner-mixin.js');
+var Example = React.createClass({
+	mixins: [
+		SpinnerMixin
+	],
+	componentWillMount: function() {
+		this.addSpinners(['more', 'than', 'one', 'spinner']);
+	}
+	// or
+	componentWillMount: function() {
+		this.addSpinners('spinner');
+	}
+});
 ```
 Render the spinner with children
 ```javascript
-<Spinner loaded={this.getSpinner('spinner')}>
-	<h1>Content!</h1>
-</Spinner>
+var Spinner = require('./path/to/vitullo-spinner.jsx');
+var SpinnerMixin = require('./path/to/spinner-mixin.js');
+var Example = React.createClass({
+	mixins: [
+		SpinnerMixin
+	],
+	componentWillMount: function() {
+		this.addSpinners('spinner');
+	},
+	// or
+	// componentWillMount: function() {
+	// 	this.addSpinners(['more', 'than', 'one', 'spinner']);
+	// },
+	render: function() {
+		<Spinner loaded={this.getSpinner('than')}>
+			<h1>Content!</h1>
+		</Spinner>
+	}
+});
 ```
 Start and stop the spinner as needed
 ```javascript
-this.startSpinner('spinner');
-$.ajax('example.com')
-  .always(function() {
-    this.stopSpinner('spinner');
-  });
+var Spinner = require('./path/to/vitullo-spinner.jsx');
+var SpinnerMixin = require('./path/to/spinner-mixin.js');
+var Example = React.createClass({
+	mixins: [
+		SpinnerMixin
+	],
+	componentWillMount: function() {
+		this.addSpinners('spinner');
+	},
+	// or
+	// componentWillMount: function() {
+	// 	this.addSpinners(['more', 'than', 'one', 'spinner']);
+	// },
+	componentDidMount: function() {
+		this.startSpinner('than');
+
+		$.ajax('example.com')
+		 	.always(function() { this.stopSpinner('than'); });
+  	}
+	render: function() {
+		<Spinner loaded={this.getSpinner('than')}>
+			<h1>Content!</h1>
+		</Spinner>
+	}
+});
 ```
 <hr/>
 ##Mixin Functions
