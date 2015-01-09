@@ -1,12 +1,12 @@
 # A simple to use loading spinner for React.
 
 
-Require needed code
+##Require needed code
 ```javascript
 var Spinner = require('./path/to/vitullo-spinner.jsx');
 var SpinnerMixin = require('./path/to/spinner-mixin.js');
 ```
-Run setup in React component
+##Run setup in React component
 ```javascript
 var Spinner = require('./path/to/vitullo-spinner.jsx');
 var SpinnerMixin = require('./path/to/spinner-mixin.js');
@@ -23,7 +23,7 @@ var Example = React.createClass({
 	}
 });
 ```
-Render the spinner with children
+##Render the spinner with children
 ```javascript
 var Spinner = require('./path/to/vitullo-spinner.jsx');
 var SpinnerMixin = require('./path/to/spinner-mixin.js');
@@ -45,7 +45,7 @@ var Example = React.createClass({
 	}
 });
 ```
-Start and stop the spinner as needed
+##Start and stop the spinner as needed
 ```javascript
 var Spinner = require('./path/to/vitullo-spinner.jsx');
 var SpinnerMixin = require('./path/to/spinner-mixin.js');
