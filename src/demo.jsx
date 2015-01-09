@@ -8,9 +8,12 @@
 
 	var Demo = React.createClass({
 		mixins: [
-			// Load the spinner mixin, http://facebook.github.io/react/docs/reusable-components.html#mixins
+			// Load the spinner mixin.
+			// http://facebook.github.io/react/docs/reusable-components.html#mixins
 			SpinnerMixin
 		],
+		// All of these are for the inputs below. 
+		// All state interaction is via the mixin.
 		getInitialState: function() {
 			return {
 				interval: undefined,
@@ -22,11 +25,16 @@
 		},
 		componentWillMount: function() {
 			// Add two spinners, 
-			this.addSpinners(['toggle', 'timed', 'configurable'])
+			this.addSpinners(['toggle', 'timed', 'configurable']);
 		},
+		// or:
+		// componentWillMount: function() {
+		// 	// Add single spinners, 
+		// 	this.addSpinners('single');
+		// },
+		// I use componentWillMount so the spinners will be available in componentDidMount.
 		// 
 		// The next functions are for individual control of the spinners created.
-		// 
 		toggle: function() {
 			// If the spinner is true (loaded, not spinning), start spinning.
 			if (this.getSpinner('toggle')) {
@@ -58,6 +66,9 @@
 				)
 			this.setState({ interval: timeout });
 		},
+		// 
+		// End spinner controller functions.
+		// 
 		render: function() {
 			return (
 				<div className="container" style={{"margin-top": "150px"}}>
