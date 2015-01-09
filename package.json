@@ -1,6 +1,6 @@
 {
   "name": "vitullo-spinner",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": "https://github.com/vcarl/vitullo-spinner",
   "description": "A simple React.js spinner component + mixin",
   "author": "Carl Vitullo",
