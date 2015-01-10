@@ -17,7 +17,7 @@
 		getInitialState: function() {
 			return {
 				interval: undefined,
-				timeout: 3,
+				timeout: 6,
 				confTimeout: 0,
 				confMessage: "Everything can be set",
 				confMsgTimeout: 0
@@ -71,7 +71,7 @@
 		// 
 		render: function() {
 			return (
-				<div className="container" style={{"margin-top": "150px"}}>
+				<div className="container" style={{"marginTop": "150px"}}>
 
 					{/* 
 					 * 
@@ -79,11 +79,18 @@
 					 * 
 					 */}
 
-					<div className="row" style={{"min-height": "150px"}}>
+					<div className="row" style={{"minHeight": "150px"}}>
 						<div className="col-md-4">
-							<Spinner loaded={this.getSpinner('toggle')}>
-								<div className="spinner-child">
+							<Spinner 
+								message="A message pops up after a 5s (default, 0s here) delay. The spinner icon waits 1s (default, 0s here) before appearing." 
+								spinnerTimeout="0" 
+								messageTimeout="0" 
+								loaded={this.getSpinner('toggle')}>
+								<div className="spinner-child text-center">
 									<h1>Toggle Spinner</h1>
+									<p>
+										Press start below!
+									</p>
 								</div>
 							</Spinner>
 						</div>
@@ -116,7 +123,11 @@
 
 					<div className="row">
 						<div className="col-md-4">
-							<button className="btn btn-block btn-primary" onClick={this.toggle}>Toggle</button>
+							<button className="btn btn-block btn-primary" onClick={this.toggle}>
+								{
+									this.getSpinner('toggle') ? 'Start' : 'Stop'
+								}
+							</button>
 						</div>
 						<div className="col-md-4">
 							<button className="btn btn-block btn-danger" onClick={this.timed}>Start</button>
@@ -183,6 +194,6 @@
 
 	React.render(
 		<Demo/>,
-		document.body
+		document.getElementById('demo')
 	);
 })();

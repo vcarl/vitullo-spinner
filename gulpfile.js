@@ -38,8 +38,8 @@ gulp.task('demo', ['build-demo','browser-sync'], function() {
 
 gulp.task('build-demo', function() {
 	return gulp.src(['src/demo.jsx'])
-		.pipe(browserified(false))
-		.pipe(uglify())
+		.pipe(browserified(true))
+		// .pipe(uglify())
 		.pipe(ext('.js'))
 		.pipe(gulp.dest('./build'));
 });

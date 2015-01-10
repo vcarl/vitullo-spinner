@@ -10,6 +10,7 @@ var Spinner = module.exports = React.createClass({
 		message: React.PropTypes.string,
 		height: React.PropTypes.string
 	},
+	tickLen: 500,
 	getInitialState: function() {
 		return {
 			elapsed: 0
@@ -33,7 +34,7 @@ var Spinner = module.exports = React.createClass({
 	startTick: function() {
 		if (this.interval === null) {
 			this.setState({ elapsed: 0 });
-			this.interval = setInterval(this.tick, 1000);
+			this.interval = setInterval(this.tick, this.tickLen);
 		}
 	},
 	componentWillUpdate: function(nextProps, nextState) {
@@ -47,8 +48,8 @@ var Spinner = module.exports = React.createClass({
 	render: function() {
 		var message = "";
 		if (this.props.loaded === false) {
-			if (this.state.elapsed >= this.props.spinnerTimeout) {
-				if (this.state.elapsed >= this.props.messageTimeout) {
+			if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.spinnerTimeout) {
+				if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.messageTimeout) {
 					message = <span>{ this.props.message }</span>;
 				}
 				return (
