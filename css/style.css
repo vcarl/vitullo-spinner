@@ -50,10 +50,10 @@
 
 @keyframes spinner {
 	from {
-		-o-transform: translate(-25px) rotate(0deg);
+		transform: translate(-25px) rotate(0deg);
 	}
 	to {
-		-o-transform: translate(25px) rotate(180deg);
+		transform: translate(25px) rotate(180deg);
 	}
 }
 
