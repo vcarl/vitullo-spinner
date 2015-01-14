@@ -49,13 +49,12 @@
 }
 
 @keyframes spinner {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-  }
+	from {
+		-o-transform: translate(-25px) rotate(0deg);
+	}
+	to {
+		-o-transform: translate(25px) rotate(180deg);
+	}
 }
 
 .scrim {
