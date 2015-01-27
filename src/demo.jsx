@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	var React = require('React');
+	var React = require('react');
 
 	var Spinner = require('./vitullo-spinner.jsx');
 	var SpinnerMixin = require('./spinner-mixin');

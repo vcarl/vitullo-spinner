@@ -1,13 +1,28 @@
 {
   "name": "vitullo-spinner",
-  "version": "0.1.01",
-  "repository": "https://github.com/vcarl/vitullo-spinner",
+  "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vcarl/vitullo-spinner"
+  },
   "description": "A simple React.js spinner component + mixin",
   "author": "Carl Vitullo",
   "main": "./build/vitullo-spinner.min.js",
   "scripts": {
     "test": "jest",
     "prepublish": "make"
+  },
+  "jest": {
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "browserify-shim"
+    ]
   },
   "dependencies": {
     "react": "^0.12.0"
