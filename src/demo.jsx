@@ -4,13 +4,12 @@
 	var React = require('react');
 
 	var Spinner = require('./vitullo-spinner.jsx');
-	var SpinnerMixin = require('./spinner-mixin');
 
 	var Demo = React.createClass({
 		mixins: [
 			// Load the spinner mixin.
 			// http://facebook.github.io/react/docs/reusable-components.html#mixins
-			SpinnerMixin
+			Spinner.Mixin
 		],
 		// All of these are for the inputs below. 
 		// All state interaction is via the mixin.
