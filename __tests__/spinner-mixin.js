@@ -1,8 +1,8 @@
-jest.dontMock('../spinner-mixin.js');
+jest.dontMock('../build/vitullo-spinner.min.js');
 
 describe('addSpinners', function() {
 	it('adds a single spinner from a string', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 
 		Mixin.setState = jest.genMockFunction();
 		Mixin.addSpinners('test');
@@ -15,7 +15,7 @@ describe('addSpinners', function() {
 	});
 
 	it('adds multiple spinners from an array', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 
 		Mixin.setState = jest.genMockFunction();
 		Mixin.addSpinners(['one', 'two', 'three']);
@@ -32,7 +32,7 @@ describe('addSpinners', function() {
 
 describe('getSpinner', function() {
 	it('gets the correct value', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		var testTrue, testFalse;
 
 		Mixin.state = {
@@ -49,7 +49,7 @@ describe('getSpinner', function() {
 	});
 
 	it('errors when it should', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		var testTrue, testFalse;
 
 		Mixin.state = {
@@ -67,7 +67,7 @@ describe('getSpinner', function() {
 
 describe('startSpinner', function() {
 	it('sets the correct value', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		Mixin.setState = function(val) {
 			this.state = val;
 		}
@@ -83,7 +83,7 @@ describe('startSpinner', function() {
 	});
 
 	it('errors when it should', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		var testTrue, testFalse;
 
 		Mixin.state = {
@@ -101,7 +101,7 @@ describe('startSpinner', function() {
 
 describe('stopSpinner', function() {
 	it('sets the correct value', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		Mixin.setState = function(val) {
 			this.state = val;
 		}
@@ -117,7 +117,7 @@ describe('stopSpinner', function() {
 	});
 
 	it('errors when it should', function() {
-		var Mixin = require('../spinner-mixin.js');
+		var Mixin = require('../build/vitullo-spinner.min.js').Mixin;
 		var testTrue, testFalse;
 
 		Mixin.state = {
