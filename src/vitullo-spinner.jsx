@@ -7,6 +7,7 @@ module.exports = (function() {
 	var Spinner = React.createClass({
 		interval: null,
 		propTypes: {
+			loaded: React.PropTypes.bool.isRequired,
 			spinWait: React.PropTypes.number,
 			msgWait: React.PropTypes.number,
 			message: React.PropTypes.string,
