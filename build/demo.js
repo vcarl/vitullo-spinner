@@ -84,8 +84,8 @@
 						React.createElement("div", {className: "col-md-4"}, 
 							React.createElement(Spinner, {
 								message: "A message pops up after a 5s (default, 0s here) delay. The spinner icon waits 1s (default, 0s here) before appearing.", 
-								spinnerTimeout: "0", 
-								messageTimeout: "0", 
+								spinWait: 0, 
+								msgWait: 0, 
 								loaded: this.getSpinner('toggle')}, 
 								React.createElement("div", {className: "spinner-child text-center"}, 
 									React.createElement("h1", null, "Toggle Spinner"), 
@@ -104,8 +104,8 @@
 						), 
 						React.createElement("div", {className: "col-md-4"}, 
 							React.createElement(Spinner, {
-								spinnerTimeout: this.state.confTimeout, 
-								messageTimeout: this.state.confMsgTimeout, 
+								spinWait: this.state.confTimeout, 
+								msgWait: this.state.confMsgTimeout, 
 								message: this.state.confMessage, 
 								loaded: this.getSpinner('configurable')
 							}, 
@@ -203,8 +203,6 @@
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./vitullo-spinner.jsx":2}],2:[function(require,module,exports){
 (function (global){
-/** @jsx React.DOM */
-
 module.exports = (function() {
 	'use strict';
 	var React = (typeof window !== "undefined" ? window.React : typeof global !== "undefined" ? global.React : null);
@@ -214,12 +212,13 @@ module.exports = (function() {
 	var Spinner = React.createClass({displayName: "Spinner",
 		interval: null,
 		propTypes: {
-			spinnerTimeout: React.PropTypes.number,
-			messageTimeout: React.PropTypes.number,
+			loaded: React.PropTypes.bool.isRequired,
+			spinWait: React.PropTypes.number,
+			msgWait: React.PropTypes.number,
 			message: React.PropTypes.string,
-			height: React.PropTypes.string
+			height: React.PropTypes.number,
+			tickLen: React.PropTypes.number
 		},
-		tickLen: 500,
 		getInitialState: function() {
 			return {
 				elapsed: 0
@@ -227,52 +226,78 @@ module.exports = (function() {
 		},
 		getDefaultProps: function() {
 			return {
-				spinnerTimeout: 1,
-				messageTimeout: 5,
+				spinWait: 1,
+				msgWait: 5,
+				tickLen: 500,
 				message: "This is taking longer than usual. Maybe check your connection?",
-				height: '100px'
+				height: 100
 			};
 		},
 		tick: function() {
-			this.setState({elapsed: this.state.elapsed + 1});
+			this.setState({elapsed: this.state.elapsed + (this.props.tickLen / 1000)});
 		},
 		stopTick: function() {
+			this.setState({elapsed: 0});
 			clearInterval(this.interval);
 			this.interval = null;
 		},
 		startTick: function() {
 			if (this.interval === null) {
 				this.setState({ elapsed: 0 });
-				this.interval = setInterval(this.tick, this.tickLen);
+				this.interval = setInterval(this.tick, this.props.tickLen);
 			}
 		},
-		componentWillUpdate: function(nextProps, nextState) {
-			if (this.props.loaded === false || nextProps.loaded === false) {
+		shouldComponentUpdate: function(nextProps, nextState) {
+			if (this.props.loaded === true && nextProps.loaded === false) {
 				this.startTick();
+			} else if (this.props.loaded === false && nextProps.loaded === true) {
+				this.stopTick();
 			}
+			if (this.props.loaded !== nextProps.loaded) {
+				return true;
+			}
+			if (
+				this.state.elapsed <= this.props.spinWait &&
+				nextState.elapsed >= nextProps.spinWait
+			) {
+				return true;
+			}
+			if (
+				this.state.elapsed <= this.props.msgWait &&
+				nextState.elapsed >= nextProps.msgWait
+			) {
+				return true;
+			}
+			return false;
 		},
 		componentWillUnmount: function() {
 			this.stopTick();
 		},
 		render: function() {
 			var message = "";
+			var ret = null;
+			var spinnerStyle = {
+				height: (this.props.height / 3),
+				width: (this.props.height / 3),
+				marginLeft: (this.props.height / -6),
+				marginTop: (this.props.height / -6),
+			};
 			if (this.props.loaded === false) {
-				if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.spinnerTimeout) {
-					if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.messageTimeout) {
-						message = React.createElement("span", null,  this.props.message);
-					}
-					return (
+				if ((this.state.elapsed) >= this.props.msgWait) {
+					message = React.createElement("span", null,  this.props.message);
+				}
+				if ((this.state.elapsed) >= this.props.spinWait) {
+					ret = (
 						React.createElement("div", {className: "scrim", style: {height: this.props.height}}, 
 							message, 
-							React.createElement("div", {"data-spinner": this.props.name, className: "spinner"}, 
+							React.createElement("div", {"data-spinner": this.props.name, style: spinnerStyle, className: "spinner"}, 
 								React.createElement("div", null)
 							)
 						)
 					);
 				}
-				return null;
+				return ret;
 			} else {
-				this.stopTick();
 				return this.props.children;
 			}
 		}
