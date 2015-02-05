@@ -45,6 +45,9 @@ module.exports = (function() {
 		componentWillUpdate: function(nextProps, nextState) {
 			if (this.props.loaded === false || nextProps.loaded === false) {
 				this.startTick();
+			} else if (this.props.loaded === false && nextProps.loaded === true) {
+				this.stopTick();
+			}
 			}
 		},
 		componentWillUnmount: function() {
@@ -68,7 +71,6 @@ module.exports = (function() {
 				}
 				return null;
 			} else {
-				this.stopTick();
 				return this.props.children;
 			}
 		}
