@@ -40,13 +40,28 @@ module.exports = (function() {
 				this.interval = setInterval(this.tick, this.props.tickLen);
 			}
 		},
-		componentWillUpdate: function(nextProps, nextState) {
-			if (this.props.loaded === false || nextProps.loaded === false) {
+		shouldComponentUpdate: function(nextProps, nextState) {
+			if (this.props.loaded === true && nextProps.loaded === false) {
 				this.startTick();
 			} else if (this.props.loaded === false && nextProps.loaded === true) {
 				this.stopTick();
 			}
+			if (this.props.loaded !== nextProps.loaded) {
+				return true;
 			}
+			if (
+				this.state.elapsed <= this.props.spinWait &&
+				nextState.elapsed >= nextProps.spinWait
+			) {
+				return true;
+			}
+			if (
+				this.state.elapsed <= this.props.msgWait &&
+				nextState.elapsed >= nextProps.msgWait
+			) {
+				return true;
+			}
+			return false;
 		},
 		componentWillUnmount: function() {
 			this.stopTick();
