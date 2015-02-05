@@ -31,6 +31,7 @@ module.exports = (function() {
 			this.setState({elapsed: this.state.elapsed + (this.props.tickLen / 1000)});
 		},
 		stopTick: function() {
+			this.setState({elapsed: 0});
 			clearInterval(this.interval);
 			this.interval = null;
 		},
