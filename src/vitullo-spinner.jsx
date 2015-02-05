@@ -10,7 +10,7 @@ module.exports = (function() {
 			spinWait: React.PropTypes.number,
 			msgWait: React.PropTypes.number,
 			message: React.PropTypes.string,
-			height: React.PropTypes.string
+			height: React.PropTypes.number,
 			tickLen: React.PropTypes.number
 		},
 		getInitialState: function() {
@@ -24,7 +24,7 @@ module.exports = (function() {
 				msgWait: 5,
 				tickLen: 500,
 				message: "This is taking longer than usual. Maybe check your connection?",
-				height: '100px'
+				height: 100
 			};
 		},
 		tick: function() {
@@ -53,6 +53,12 @@ module.exports = (function() {
 		},
 		render: function() {
 			var message = "";
+			var spinnerStyle = {
+				height: (this.props.height / 3),
+				width: (this.props.height / 3),
+				marginLeft: (this.props.height / -6),
+				marginTop: (this.props.height / -6),
+			};
 			if (this.props.loaded === false) {
 					return (
 				if ((this.state.elapsed) >= this.props.msgWait) {
@@ -61,7 +67,7 @@ module.exports = (function() {
 				if ((this.state.elapsed) >= this.props.spinWait) {
 						<div className="scrim" style={{height: this.props.height}}>
 							{message}
-							<div data-spinner={this.props.name} className="spinner">
+							<div data-spinner={this.props.name} style={spinnerStyle} className="spinner">
 								<div />
 							</div>
 						</div>
