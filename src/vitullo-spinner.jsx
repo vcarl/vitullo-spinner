@@ -68,6 +68,7 @@ module.exports = (function() {
 		},
 		render: function() {
 			var message = "";
+			var ret = null;
 			var spinnerStyle = {
 				height: (this.props.height / 3),
 				width: (this.props.height / 3),
@@ -75,11 +76,11 @@ module.exports = (function() {
 				marginTop: (this.props.height / -6),
 			};
 			if (this.props.loaded === false) {
-					return (
 				if ((this.state.elapsed) >= this.props.msgWait) {
 					message = <span>{ this.props.message }</span>;
 				}
 				if ((this.state.elapsed) >= this.props.spinWait) {
+					ret = (
 						<div className="scrim" style={{height: this.props.height}}>
 							{message}
 							<div data-spinner={this.props.name} style={spinnerStyle} className="spinner">
@@ -88,7 +89,7 @@ module.exports = (function() {
 						</div>
 					);
 				}
-				return null;
+				return ret;
 			} else {
 				return this.props.children;
 			}
