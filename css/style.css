@@ -1,59 +1,30 @@
 .spinner {
-	display: inline-block;
 	position: absolute;
-	height: 40px;
-	width: 5px;
-	margin-left: -2.5px;
-	margin-top: -20px;
-	left: 50%;
 	top: 50%;
+	left: 50%;
+	background-color: #333;
+
+	border-radius: 50%;  
+	-webkit-animation: circlefade 1.0s infinite ease-in-out;
+	animation: circlefade 1.0s infinite ease-in-out;
 }
 
-.spinner > div {
-	background: #333;
-	height: 40px;
-	width: 5px;
-	-webkit-animation: spinner 1s cubic-bezier(.5,0,.5,1);
-	-moz-animation: spinner 1s cubic-bezier(.5,0,.5,1);
-	-o-animation: spinner 1s cubic-bezier(.5,0,.5,1);
-	-webkit-animation-iteration-count: infinite;
-	-moz-animation-iteration-count: infinite;
-	-o-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	-moz-animation-direction: alternate;
-	-o-animation-direction: alternate;
-}
-@-webkit-keyframes spinner {
-	from {
-		-webkit-transform: translate(-25px) rotate(0deg);
+@-webkit-keyframes circlefade {
+	0% { 
+		-webkit-transform: scale(0.0)
 	}
-	to {
-		-webkit-transform: translate(25px) rotate(180deg);
-	}
-}
-@-moz-keyframes spinner {
-	from {
-		-moz-transform: translate(-25px) rotate(0deg);
-	}
-	to {
-		-moz-transform: translate(25px) rotate(180deg);
-	}
-}
-@-o-keyframes spinner {
-	from {
-		-o-transform: translate(-25px) rotate(0deg);
-	}
-	to {
-		-o-transform: translate(25px) rotate(180deg);
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(1.0);
 	}
 }
 
-@keyframes spinner {
-	from {
-		transform: translate(-25px) rotate(0deg);
-	}
-	to {
-		transform: translate(25px) rotate(180deg);
+@keyframes circlefade {
+	0% { 
+		transform: scale(0.0);
+	} 100% {
+		opacity: 0;
+		transform: scale(1.0);
 	}
 }
 
