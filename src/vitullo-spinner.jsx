@@ -13,8 +13,8 @@ module.exports = (function() {
 			messageTimeout: React.PropTypes.number,
 			message: React.PropTypes.string,
 			height: React.PropTypes.string
+			tickLen: React.PropTypes.number
 		},
-		tickLen: 500,
 		getInitialState: function() {
 			return {
 				elapsed: 0
@@ -24,12 +24,13 @@ module.exports = (function() {
 			return {
 				spinnerTimeout: 1,
 				messageTimeout: 5,
+				tickLen: 500,
 				message: "This is taking longer than usual. Maybe check your connection?",
 				height: '100px'
 			};
 		},
 		tick: function() {
-			this.setState({elapsed: this.state.elapsed + 1});
+			this.setState({elapsed: this.state.elapsed + (this.props.tickLen / 1000)});
 		},
 		stopTick: function() {
 			clearInterval(this.interval);
@@ -38,7 +39,7 @@ module.exports = (function() {
 		startTick: function() {
 			if (this.interval === null) {
 				this.setState({ elapsed: 0 });
-				this.interval = setInterval(this.tick, this.tickLen);
+				this.interval = setInterval(this.tick, this.props.tickLen);
 			}
 		},
 		componentWillUpdate: function(nextProps, nextState) {
@@ -52,11 +53,11 @@ module.exports = (function() {
 		render: function() {
 			var message = "";
 			if (this.props.loaded === false) {
-				if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.spinnerTimeout) {
-					if ((this.state.elapsed * (this.tickLen/1000)) >= this.props.messageTimeout) {
-						message = <span>{ this.props.message }</span>;
-					}
 					return (
+				if ((this.state.elapsed) >= this.props.msgWait) {
+					message = <span>{ this.props.message }</span>;
+				}
+				if ((this.state.elapsed) >= this.props.spinWait) {
 						<div className="scrim" style={{height: this.props.height}}>
 							{message}
 							<div data-spinner={this.props.name} className="spinner">
