@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 module.exports = (function() {
 	'use strict';
 	var React = require('react');
@@ -9,8 +7,8 @@ module.exports = (function() {
 	var Spinner = React.createClass({
 		interval: null,
 		propTypes: {
-			spinnerTimeout: React.PropTypes.number,
-			messageTimeout: React.PropTypes.number,
+			spinWait: React.PropTypes.number,
+			msgWait: React.PropTypes.number,
 			message: React.PropTypes.string,
 			height: React.PropTypes.string
 			tickLen: React.PropTypes.number
@@ -22,8 +20,8 @@ module.exports = (function() {
 		},
 		getDefaultProps: function() {
 			return {
-				spinnerTimeout: 1,
-				messageTimeout: 5,
+				spinWait: 1,
+				msgWait: 5,
 				tickLen: 500,
 				message: "This is taking longer than usual. Maybe check your connection?",
 				height: '100px'

@@ -82,8 +82,8 @@
 						<div className="col-md-4">
 							<Spinner 
 								message="A message pops up after a 5s (default, 0s here) delay. The spinner icon waits 1s (default, 0s here) before appearing." 
-								spinnerTimeout="0" 
-								messageTimeout="0" 
+								spinWait={0}
+								msgWait={0}
 								loaded={this.getSpinner('toggle')}>
 								<div className="spinner-child text-center">
 									<h1>Toggle Spinner</h1>
@@ -102,8 +102,8 @@
 						</div>
 						<div className="col-md-4">
 							<Spinner 
-								spinnerTimeout={this.state.confTimeout} 
-								messageTimeout={this.state.confMsgTimeout}
+								spinWait={this.state.confTimeout} 
+								msgWait={this.state.confMsgTimeout}
 								message={this.state.confMessage}
 								loaded={this.getSpinner('configurable')}
 							>
