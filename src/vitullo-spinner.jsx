@@ -32,7 +32,6 @@ module.exports = (function() {
 			this.setState({elapsed: this.state.elapsed + (this.props.tickLen / 1000)});
 		},
 		stopTick: function() {
-			this.setState({elapsed: 0});
 			clearInterval(this.interval);
 			this.interval = null;
 		},
@@ -42,28 +41,12 @@ module.exports = (function() {
 				this.interval = setInterval(this.tick, this.props.tickLen);
 			}
 		},
-		shouldComponentUpdate: function(nextProps, nextState) {
-			if (this.props.loaded === true && nextProps.loaded === false) {
+		componentDidUpdate: function(prevProps, prevState) {
+			if (prevProps.loaded === true && this.props.loaded === false) {
 				this.startTick();
-			} else if (this.props.loaded === false && nextProps.loaded === true) {
+			} else if (prevProps.loaded === false && this.props.loaded === true) {
 				this.stopTick();
 			}
-			if (this.props.loaded !== nextProps.loaded) {
-				return true;
-			}
-			if (
-				this.state.elapsed <= this.props.spinWait &&
-				nextState.elapsed >= nextProps.spinWait
-			) {
-				return true;
-			}
-			if (
-				this.state.elapsed <= this.props.msgWait &&
-				nextState.elapsed >= nextProps.msgWait
-			) {
-				return true;
-			}
-			return false;
 		},
 		componentWillUnmount: function() {
 			this.stopTick();
