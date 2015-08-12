@@ -14,11 +14,6 @@ module.exports = (function() {
 			height: React.PropTypes.number,
 			tickLen: React.PropTypes.number
 		},
-		getInitialState: function() {
-			return {
-				elapsed: 0
-			};
-		},
 		getDefaultProps: function() {
 			return {
 				spinWait: 1,
@@ -27,6 +22,21 @@ module.exports = (function() {
 				height: 100
 				message: "Loading...",
 			};
+		},
+		getInitialState: function() {
+			return {
+				elapsed: 0
+			};
+		},
+		componentWillUnmount: function() {
+			this.stopTick();
+		},
+		componentDidUpdate: function(prevProps, prevState) {
+			if (prevProps.loaded === true && this.props.loaded === false) {
+				this.startTick();
+			} else if (prevProps.loaded === false && this.props.loaded === true) {
+				this.stopTick();
+			}
 		},
 		tick: function() {
 			this.setState({elapsed: this.state.elapsed + (this.props.tickLen / 1000)});
@@ -40,16 +50,6 @@ module.exports = (function() {
 				this.setState({ elapsed: 0 });
 				this.interval = setInterval(this.tick, this.props.tickLen);
 			}
-		},
-		componentDidUpdate: function(prevProps, prevState) {
-			if (prevProps.loaded === true && this.props.loaded === false) {
-				this.startTick();
-			} else if (prevProps.loaded === false && this.props.loaded === true) {
-				this.stopTick();
-			}
-		},
-		componentWillUnmount: function() {
-			this.stopTick();
 		},
 		render: function() {
 			var message = "";
