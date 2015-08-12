@@ -24,8 +24,8 @@ module.exports = (function() {
 				spinWait: 1,
 				msgWait: 5,
 				tickLen: 500,
-				message: "This is taking longer than usual. Maybe check your connection?",
 				height: 100
+				message: "Loading...",
 			};
 		},
 		tick: function() {
