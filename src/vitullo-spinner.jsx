@@ -65,16 +65,22 @@ module.exports = (function() {
 					message = <span>{ this.props.message }</span>;
 				}
 				if ((this.state.elapsed) >= this.props.spinWait) {
-					ret = (
-						<div className="scrim" style={{height: this.props.height}}>
-							{message}
-							<div data-spinner={this.props.name} style={spinnerStyle} className="spinner">
 								<div />
+					return (
+						<div
+							className="v-spinner scrim"
+							style={{height: this.props.height}}
+						>
+							<div className="v-spinner-message">{message}</div>
+							<div
+								data-spinner={this.props.name}
+								style={spinnerStyle}
+								className="spinner"
+							>
 							</div>
 						</div>
 					);
 				}
-				return ret;
 			} else {
 				return this.props.children;
 			}
