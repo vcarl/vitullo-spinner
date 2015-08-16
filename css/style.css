@@ -1,8 +1,8 @@
-.spinner {
-	position: absolute;
-	top: 50%;
-	left: 50%;
+.vs-indicator {
+	width: 50px;
+	height: 50px;
 	background-color: #333;
+	margin: auto;
 
 	border-radius: 50%;  
 	-webkit-animation: circlefade 1.0s infinite ease-in-out;
@@ -28,7 +28,7 @@
 	}
 }
 
-.scrim {
+.vs-scrim {
 	position: relative;
 	width: 100%;
 	min-height: 150px;
@@ -36,6 +36,6 @@
 	z-index: 100;
 }
 
-.spinner-parent {
+.vs-spinner-wrapper {
 	position: relative;
 }
