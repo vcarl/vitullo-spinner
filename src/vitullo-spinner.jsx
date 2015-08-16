@@ -55,13 +55,6 @@ module.exports = (function() {
 		},
 		render: function() {
 			var message = "";
-			var ret = null;
-			var spinnerStyle = {
-				height: (this.props.height / 3),
-				width: (this.props.height / 3),
-				marginLeft: (this.props.height / -6),
-				marginTop: (this.props.height / -6),
-			};
 			if (this.props.loaded === false) {
 				if ((this.state.elapsed) >= this.props.msgWait) {
 					message = <span>{ this.props.message }</span>;
@@ -82,9 +75,8 @@ module.exports = (function() {
 						</div>
 					);
 				}
-			} else {
-				return this.props.children;
-			}
+			} 
+			return this.props.children;
 		}
 	});
 
