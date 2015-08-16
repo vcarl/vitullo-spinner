@@ -12,15 +12,17 @@ module.exports = (function() {
 			msgWait: React.PropTypes.number,
 			message: React.PropTypes.string,
 			height: React.PropTypes.number,
-			tickLen: React.PropTypes.number
+			tickLen: React.PropTypes.number,
+			spinner: React.PropTypes.node
 		},
 		getDefaultProps: function() {
 			return {
 				spinWait: 1,
 				msgWait: 5,
 				tickLen: 500,
-				height: 100
 				message: "Loading...",
+				height: 100,
+				spinner: <div className="vs-indicator" />
 			};
 		},
 		getInitialState: function() {
@@ -65,7 +67,6 @@ module.exports = (function() {
 					message = <span>{ this.props.message }</span>;
 				}
 				if ((this.state.elapsed) >= this.props.spinWait) {
-								<div />
 					return (
 						<div
 							className="v-spinner scrim"
@@ -77,6 +78,7 @@ module.exports = (function() {
 								style={spinnerStyle}
 								className="spinner"
 							>
+								{this.props.spinner}
 							</div>
 						</div>
 					);
