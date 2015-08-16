@@ -69,14 +69,13 @@ module.exports = (function() {
 				if ((this.state.elapsed) >= this.props.spinWait) {
 					return (
 						<div
-							className="v-spinner scrim"
+							className="vs-scrim"
 							style={{height: this.props.height}}
 						>
-							<div className="v-spinner-message">{message}</div>
+							<div className="vs-message">{message}</div>
 							<div
 								data-spinner={this.props.name}
-								style={spinnerStyle}
-								className="spinner"
+								className="vs-indicator-wrapper"
 							>
 								{this.props.spinner}
 							</div>
