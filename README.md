@@ -76,13 +76,19 @@ var Example = React.createClass({
 	msgWait: React.PropTypes.number,
 	// Set what message appears.
 	message: React.PropTypes.string,
-	// The height of the spinner container. The actually spinner is 1/3rd as tall
-	// to give some padding.
+	// The height of the spinner container. The actually spinner is 1/3rd 
+	// as tall to give some padding.
 	height: React.PropTypes.number,
-	// The length of time between ticks, in ms. By default this is set to 500,
-	// a lower number will tick more frequently (and allow more granular 
-	// spinWait/msgWait) values. A large number will mutate state less frequently.
+	// The length of time between ticks, in ms. By default this is set to 
+	// 500, a lower number will tick more frequently (and allow more 
+	// granular  spinWait/msgWait) values. A large number will mutate state 
+	// less frequently.
 	tickLen: React.PropTypes.number
+	// By default this is a div with the class 'vs-indicator', but this can 
+	// be overridden if you want a more complex indicator than can be made 
+	// with a single div.
+	spinner: React.PropTypes.node
+
 ```
 
 
